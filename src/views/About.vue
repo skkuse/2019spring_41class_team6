@@ -1,5 +1,5 @@
 <template>
-  <div class="site-wrap">
+  <div>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">

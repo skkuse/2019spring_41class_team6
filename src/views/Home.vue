@@ -1,5 +1,5 @@
 <template>
-  <div class="site-wrap">
+  <div>
     <div
       class="site-blocks-cover"
       style="background-image: url(images/hero_1.jpg);"
