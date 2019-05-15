@@ -26,6 +26,11 @@ export default new Router({
       path: "/shop",
       name: "shop",
       component: () => import("./views/Shop.vue")
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: () => import("./views/Contact.vue")
     }
   ]
 });

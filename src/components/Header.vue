@@ -82,9 +82,11 @@
           </li>
           <li><a href="#">Catalogue</a></li>
           <li><a href="#">New Arrivals</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><router-link to="contact">Contact</router-link></li>
         </ul>
       </div>
     </nav>
   </header>
 </template>
+
+<script></script>
