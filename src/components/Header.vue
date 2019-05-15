@@ -20,7 +20,7 @@
             class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center"
           >
             <div class="site-logo">
-              <a href="index.html" class="js-logo-clone">Shoppers</a>
+              <a href="/" class="js-logo-clone">Shoppers</a>
             </div>
           </div>
 
@@ -54,7 +54,7 @@
       <div class="container">
         <ul class="site-menu js-clone-nav d-none d-md-block">
           <li class="has-children active">
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
             <ul class="dropdown">
               <li><a href="#">Menu One</a></li>
               <li><a href="#">Menu Two</a></li>
@@ -70,7 +70,7 @@
             </ul>
           </li>
           <li class="has-children">
-            <a href="about.html">About</a>
+            <a href="about">About</a>
             <ul class="dropdown">
               <li><a href="#">Menu One</a></li>
               <li><a href="#">Menu Two</a></li>
