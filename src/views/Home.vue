@@ -1,6 +1,5 @@
 <template>
   <div class="site-wrap">
-    <Header></Header>
     <div
       class="site-blocks-cover"
       style="background-image: url(images/hero_1.jpg);"
@@ -261,21 +260,12 @@
         </div>
       </div>
     </div>
-
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-
 export default {
-  name: "home",
-  components: {
-    Header,
-    Footer
-  }
+  name: "home"
 };
 </script>

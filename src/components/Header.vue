@@ -20,7 +20,9 @@
             class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center"
           >
             <div class="site-logo">
-              <a href="/" class="js-logo-clone">Shoppers</a>
+              <router-link to="/"
+                ><a class="js-logo-clone">Shoppers</a></router-link
+              >
             </div>
           </div>
 
@@ -54,7 +56,7 @@
       <div class="container">
         <ul class="site-menu js-clone-nav d-none d-md-block">
           <li class="has-children active">
-            <a href="/">Home</a>
+            <router-link to="/"><a>Home</a></router-link>
             <ul class="dropdown">
               <li><a href="#">Menu One</a></li>
               <li><a href="#">Menu Two</a></li>
@@ -70,7 +72,7 @@
             </ul>
           </li>
           <li class="has-children">
-            <a href="about">About</a>
+            <router-link to="about"><a>About</a></router-link>
             <ul class="dropdown">
               <li><a href="#">Menu One</a></li>
               <li><a href="#">Menu Two</a></li>
