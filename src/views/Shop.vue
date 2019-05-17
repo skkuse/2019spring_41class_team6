@@ -74,16 +74,16 @@
               >
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"
+                    <router-link to="shop-single"
                       ><img
                         :src="'images/cloth_' + ((n % 3) + 1) + '.jpg'"
                         alt="Image placeholder"
                         class="img-fluid"
-                    /></a>
+                    /></router-link>
                   </figure>
                   <div class="block-4-text p-4">
                     <h3>
-                      <a href="shop-single.html">Tank Top {{ n }}</a>
+                      <router-link to="shop-single">Tank Top {{ n }}</router-link>
                     </h3>
                     <p class="mb-0">Finding perfect t-shirt</p>
                     <p class="text-primary font-weight-bold">$50</p>
