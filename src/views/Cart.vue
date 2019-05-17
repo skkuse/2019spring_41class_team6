@@ -4,7 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="index.html">Home</a> <span class="mx-2 mb-0">/</span>
+            <router-link to="/">Home</router-link>
+            <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Cart</strong>
           </div>
         </div>
@@ -182,7 +183,7 @@
                   <div class="col-md-12">
                     <button
                       class="btn btn-primary btn-lg py-3 btn-block"
-                      onclick="window.location='checkout.html'"
+                      @click="goToChekout()"
                     >
                       Proceed To Checkout
                     </button>
@@ -196,3 +197,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "cart",
+  methods: {
+    goToChekout() {
+      this.$router.push("checkout");
+    }
+  }
+};
+</script>

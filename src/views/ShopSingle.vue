@@ -4,7 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="index.html">Home</a> <span class="mx-2 mb-0">/</span>
+            <router-link to="/">Home</router-link>
+            <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Tank Top T-Shirt</strong>
           </div>
         </div>
@@ -95,8 +96,8 @@
               </div>
             </div>
             <p>
-              <a href="cart.html" class="buy-now btn btn-sm btn-primary"
-                >Add To Cart</a
+              <router-link to="cart" class="buy-now btn btn-sm btn-primary"
+                >Add To Cart</router-link
               >
             </p>
           </div>

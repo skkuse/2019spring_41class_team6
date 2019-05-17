@@ -41,6 +41,16 @@ export default new Router({
       path: "/shop-single",
       name: "shop-single",
       component: () => import("./views/ShopSingle.vue")
+    },
+    {
+      path: "/checkout",
+      name: "checkout",
+      component: () => import("./views/Checkout.vue")
+    },
+    {
+      path: "/thankyou",
+      name: "thankyou",
+      component: () => import("./views/Thankyou.vue")
     }
   ]
 });
