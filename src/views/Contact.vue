@@ -4,7 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <router-link to="/">Home</router-link> <span class="mx-2 mb-0">/</span>
+            <router-link to="/">Home</router-link>
+            <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Contact</strong>
           </div>
         </div>
