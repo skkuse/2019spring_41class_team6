@@ -525,7 +525,7 @@
 export default {
   name: "cart",
   methods: {
-    goToThankyou() {
+    goToThankyou: () => {
       this.$router.push("thankyou");
     }
   }

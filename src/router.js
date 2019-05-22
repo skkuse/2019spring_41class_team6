@@ -51,6 +51,11 @@ export default new Router({
       path: "/thankyou",
       name: "thankyou",
       component: () => import("./views/Thankyou.vue")
+    },
+    {
+      path: "/sample-upload",
+      name: "sample-upload",
+      component: () => import("./views/SampleUpload.vue")
     }
   ]
 });

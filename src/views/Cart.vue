@@ -202,7 +202,7 @@
 export default {
   name: "cart",
   methods: {
-    goToChekout() {
+    goToChekout: () => {
       this.$router.push("checkout");
     }
   }
