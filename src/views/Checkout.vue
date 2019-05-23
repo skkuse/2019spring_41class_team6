@@ -505,7 +505,7 @@
                   <div class="form-group">
                     <button
                       class="btn btn-primary btn-lg py-3 btn-block"
-                      @click="goToThankyou()"
+                      @click="goToThankyou"
                     >
                       Place Order
                     </button>
@@ -525,7 +525,7 @@
 export default {
   name: "cart",
   methods: {
-    goToThankyou: () => {
+    goToThankyou: function() {
       this.$router.push("thankyou");
     }
   }

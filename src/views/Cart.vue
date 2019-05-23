@@ -183,7 +183,7 @@
                   <div class="col-md-12">
                     <button
                       class="btn btn-primary btn-lg py-3 btn-block"
-                      @click="goToChekout()"
+                      @click="goToChekout"
                     >
                       Proceed To Checkout
                     </button>
@@ -202,7 +202,7 @@
 export default {
   name: "cart",
   methods: {
-    goToChekout: () => {
+    goToChekout: function() {
       this.$router.push("checkout");
     }
   }
