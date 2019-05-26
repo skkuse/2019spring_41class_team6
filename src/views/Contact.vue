@@ -90,6 +90,11 @@
                       class="btn btn-primary btn-lg btn-block"
                       value="Send Message"
                     />
+                    <router-link
+                      to="contactcomplete"
+                      class="btn btn-primary btn-lg btn-block"
+                      >Send Message
+                    </router-link>
                   </div>
                 </div>
               </div>
