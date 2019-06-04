@@ -523,7 +523,7 @@
 
 <script>
 export default {
-  name: "cart",
+  name: "checkout",
   methods: {
     goToThankyou: function() {
       this.$router.push("thankyou");

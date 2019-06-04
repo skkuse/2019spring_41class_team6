@@ -56,6 +56,11 @@ export default new Router({
       path: "/sample-upload",
       name: "sample-upload",
       component: () => import("./views/SampleUpload.vue")
+    },
+    {
+      path: "/contactcomplete",
+      name: "contactcomplete",
+      component: () => import("./views/ContactComplete.vue")
     }
   ]
 });
