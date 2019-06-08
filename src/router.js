@@ -53,9 +53,9 @@ export default new Router({
       component: () => import("./views/Thankyou.vue")
     },
     {
-      path: "/sample-upload",
-      name: "sample-upload",
-      component: () => import("./views/SampleUpload.vue")
+      path: "/register-product",
+      name: "register-product",
+      component: () => import("./views/RegisterProduct.vue")
     },
     {
       path: "/contactcomplete",

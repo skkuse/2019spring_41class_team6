@@ -17,7 +17,7 @@ import { db, storage } from "@/firebase";
 let file = null;
 
 export default {
-  name: "sample-upload",
+  name: "register-product",
   data: () => {
     return {
       message: "",
