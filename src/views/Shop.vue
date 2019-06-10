@@ -1,3 +1,22 @@
+<script>
+  import {db} from '../firebase.js'
+  export default{
+    name: "Shop",
+    data:()=>{
+      var lst=db.collection("products").get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+          console.log(doc.id," => ",doc.data());
+        });
+      }).catch(function(error){
+        console.log("Error getting documents: ",error);
+      });
+      return{
+        lst
+      }
+    }
+  };
+</script>
+
 <template>
   <div>
     <div class="bg-light py-3">
@@ -68,8 +87,8 @@
             </div>
             <div class="row mb-5">
               <div
-                v-for="n in 12"
-                :key="n"
+                v-for="(item,i) in lst"
+                :key="i"
                 class="col-sm-6 col-lg-4 mb-4"
                 data-aos="fade-up"
               >
@@ -77,7 +96,7 @@
                   <figure class="block-4-image">
                     <router-link to="shop-single"
                       ><img
-                        :src="'images/cloth_' + ((n % 3) + 1) + '.jpg'"
+                        :src="item.thumbnail"
                         alt="Image placeholder"
                         class="img-fluid"
                     /></router-link>
@@ -85,11 +104,11 @@
                   <div class="block-4-text p-4">
                     <h3>
                       <router-link to="shop-single"
-                        >Tank Top {{ n }}</router-link
+                        >{{item.title}} {{ n }}</router-link
                       >
                     </h3>
-                    <p class="mb-0">Finding perfect t-shirt</p>
-                    <p class="text-primary font-weight-bold">$50</p>
+                    <p class="mb-0">{{item.thumbnail_description}}</p>
+                    <p class="text-primary font-weight-bold">{{item.price}}</p>
                   </div>
                 </div>
               </div>
