@@ -1,22 +1,3 @@
-<script>
-  import {db} from '../firebase.js'
-  export default{
-    name: "Shop",
-    data:()=>{
-      var lst=db.collection("products").get().then(function(querySnapshot){
-        querySnapshot.forEach(function(doc){
-          console.log(doc.id," => ",doc.data());
-        });
-      }).catch(function(error){
-        console.log("Error getting documents: ",error);
-      });
-      return{
-        lst
-      }
-    }
-  };
-</script>
-
 <template>
   <div>
     <div class="bg-light py-3">
@@ -87,8 +68,8 @@
             </div>
             <div class="row mb-5">
               <div
-                v-for="(item,i) in lst"
-                :key="i"
+                v-for="(product, index) in products"
+                :key="index"
                 class="col-sm-6 col-lg-4 mb-4"
                 data-aos="fade-up"
               >
@@ -96,19 +77,21 @@
                   <figure class="block-4-image">
                     <router-link to="shop-single"
                       ><img
-                        :src="item.thumbnail"
+                        :src="product.data.thumbnail"
                         alt="Image placeholder"
                         class="img-fluid"
                     /></router-link>
                   </figure>
                   <div class="block-4-text p-4">
                     <h3>
-                      <router-link to="shop-single"
-                        >{{item.title}} {{ n }}</router-link
-                      >
+                      <router-link :to="'shop-single/' + product.id">{{
+                        product.data.title
+                      }}</router-link>
                     </h3>
-                    <p class="mb-0">{{item.thumbnail_description}}</p>
-                    <p class="text-primary font-weight-bold">{{item.price}}</p>
+                    <p class="mb-0">{{ product.data.thumbnail_description }}</p>
+                    <p class="text-primary font-weight-bold">
+                      {{ product.data.price }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -281,3 +264,25 @@
     </div>
   </div>
 </template>
+
+<script>
+import { db } from "@/firebase.js";
+
+export default {
+  name: "Shop",
+  data() {
+    return {
+      products: []
+    };
+  },
+  beforeCreate() {
+    db.collection("products")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.products.push({ id: doc.id, data: doc.data() });
+        });
+      });
+  }
+};
+</script>
