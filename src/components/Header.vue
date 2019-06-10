@@ -30,10 +30,10 @@
             <div class="site-top-icons">
               <ul>
                 <li>
-                  <router-link to="signin">Sign In</router-link>
+                  <router-link to="/signin">Sign In</router-link>
                 </li>
                 <li>
-                  <router-link to="signup">Sign Up</router-link>
+                  <router-link to="/signup">Sign Up</router-link>
                 </li>
                 <li>
                   <a href="#"><span class="icon icon-person"></span></a>
@@ -42,7 +42,7 @@
                   <a href="#"><span class="icon icon-heart-o"></span></a>
                 </li>
                 <li>
-                  <router-link to="cart" class="site-cart">
+                  <router-link to="/cart" class="site-cart">
                     <span class="icon icon-shopping_cart"></span>
                     <span class="count">2</span>
                   </router-link>
@@ -65,12 +65,12 @@
             <router-link to="/">Home</router-link>
           </li>
           <li>
-            <router-link to="about">About</router-link>
+            <router-link to="/about">About</router-link>
           </li>
           <li>
-            <router-link to="shop">Shop</router-link>
+            <router-link to="/shop">Shop</router-link>
           </li>
-          <li><router-link to="contact">Contact</router-link></li>
+          <li><router-link to="/contact">Contact</router-link></li>
         </ul>
       </div>
     </nav>

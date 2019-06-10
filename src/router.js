@@ -38,7 +38,7 @@ export default new Router({
       component: () => import("./views/Cart.vue")
     },
     {
-      path: "/shop-single",
+      path: "/shop-single/:id",
       name: "shop-single",
       component: () => import("./views/ShopSingle.vue")
     },
