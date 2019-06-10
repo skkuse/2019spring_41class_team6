@@ -85,16 +85,12 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-12">
-                    <input
-                      type="submit"
-                      class="btn btn-primary btn-lg btn-block"
-                      value="Send Message"
-                    />
-                    <router-link
-                      to="contactcomplete"
-                      class="btn btn-primary btn-lg btn-block"
-                      >Send Message
-                    </router-link>
+                    <button
+                      class="btn btn-primary btn-lg py-3 btn-block"
+                      @click="goToContactcomplete"
+                    >
+                      Send Message
+                    </button>
                   </div>
                 </div>
               </div>
@@ -114,3 +110,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "contact",
+  methods: {
+    goToContactcomplete: function() {
+      this.$router.push("contactcomplete");
+    }
+  }
+};
+</script>

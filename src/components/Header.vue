@@ -29,6 +29,12 @@
           <div class="col-6 col-md-4 order-3 order-md-3 text-right">
             <div class="site-top-icons">
               <ul>
+                  <li>
+                     <router-link to="signin">Sign In</router-link>
+                  </li>
+                  <li>
+                      <router-link to="signup">Sign In</router-link>
+                  </li>
                 <li>
                   <a href="#"><span class="icon icon-person"></span></a>
                 </li>

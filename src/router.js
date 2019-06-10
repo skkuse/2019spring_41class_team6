@@ -61,6 +61,16 @@ export default new Router({
       path: "/contactcomplete",
       name: "contactcomplete",
       component: () => import("./views/ContactComplete.vue")
+    },
+    {
+      path: "/signin",
+      name: "signin",
+      component: () => import("./views/SignIn.vue")
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: () => import("./views/SignUp.vue")
     }
   ]
 });
