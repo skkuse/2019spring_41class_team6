@@ -16,7 +16,8 @@
                 No one's normal with us. Show Your Identitiy to others.
               </p>
               <p>
-                <a href="#" class="btn btn-sm btn-primary">Sign Up</a>
+                <router-link to="/signup2" class="btn btn-sm primary">Sign Up</router-link>
+<!--                <a href="#" class="btn btn-sm btn-primary">Sign Up</a>-->
               </p>
             </div>
           </div>

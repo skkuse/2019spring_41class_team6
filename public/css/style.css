@@ -116,6 +116,10 @@ a {
     height: 2px;
     background: #7971ea; }
 
+  .signup {
+    position: center;
+  }
+
 .border-top {
   border-top: 1px solid #edf0f5 !important; }
 
