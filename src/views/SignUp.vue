@@ -24,7 +24,7 @@
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="c_fname" class="text-black"
-                      >First Name <span class="text-danger">*</span></label
+                      >Email ID <span class="text-danger">*</span></label
                     >
                     <input
                       type="text"
@@ -35,7 +35,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="c_lname" class="text-black"
-                      >Last Name <span class="text-danger">*</span></label
+                      >Password <span class="text-danger">*</span></label
                     >
                     <input
                       type="text"
@@ -48,7 +48,7 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_email" class="text-black"
-                      >Email <span class="text-danger">*</span></label
+                      >Nickname <span class="text-danger">*</span></label
                     >
                     <input
                       type="email"
@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_subject" class="text-black">Title </label>
+                    <label for="c_subject" class="text-black">? </label>
                     <input
                       type="text"
                       class="form-control"
@@ -70,26 +70,10 @@
                     />
                   </div>
                 </div>
-
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_message" class="text-black">Message </label>
-                    <textarea
-                      name="c_message"
-                      id="c_message"
-                      cols="30"
-                      rows="7"
-                      class="form-control"
-                    ></textarea>
-                  </div>
-                </div>
                 <div class="form-group row">
                   <div class="col-lg-12">
-                    <button
-                      class="btn btn-primary btn-lg py-3 btn-block"
-                      @click="goToContactcomplete"
-                    >
-                      Send Message
+                    <button class="btn btn-primary btn-lg py-3 btn-block">
+                      Sign Up
                     </button>
                   </div>
                 </div>
