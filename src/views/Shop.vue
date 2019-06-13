@@ -75,7 +75,7 @@
               >
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <router-link to="shop-single"
+                    <router-link :to="'/shop-single/' + product.id"
                       ><img
                         :src="product.data.thumbnail"
                         alt="Image placeholder"
@@ -84,7 +84,7 @@
                   </figure>
                   <div class="block-4-text p-4">
                     <h3>
-                      <router-link :to="'shop-single/' + product.id">{{
+                      <router-link :to="'/shop-single/' + product.id">{{
                         product.data.title
                       }}</router-link>
                     </h3>
@@ -266,7 +266,7 @@
 </template>
 
 <script>
-import { db } from "@/firebase.js";
+import { db } from "@/firebase";
 
 export default {
   name: "Shop",
@@ -277,6 +277,7 @@ export default {
   },
   beforeCreate() {
     db.collection("products")
+      .orderBy("createdAt", "desc")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
