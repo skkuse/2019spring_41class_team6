@@ -12,7 +12,16 @@
 </template>
 
 <script>
-    import { fb } from '@/firebase.js'
+import firebase from "firebase";
+firebase.initializeApp({
+    apiKey: "AIzaSyBiCCOhDhhbkaL6XP95zGoRt0zQ7MbJgYc",
+    authDomain: "indi-market.firebaseapp.com",
+    databaseURL: "https://indi-market.firebaseio.com",
+    projectId: "indi-market",
+    storageBucket: "indi-market.appspot.com",
+    messagingSenderId: "867548987294",
+    appId: "1:867548987294:web:7d7a54a9b6c9b082"
+});
 
 export default {
   name: "signUp2",
@@ -24,7 +33,7 @@ export default {
   },
   methods: {
     signUp2: function() {
-      fb
+      firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
