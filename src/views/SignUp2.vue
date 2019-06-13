@@ -5,7 +5,7 @@
     <br />
     <input type="password" v-model="password" placeholder="Password" />
     <br />
-    <button v-on:click="signUp2">Sign Up</button>
+    <button class="btn btn-primary" v-on:click="signUp2">Sign Up</button>
     <span>or go back to <router-link to="/SignIn">Sign in</router-link>. </span>
     <!-- ?? -->
   </div>
