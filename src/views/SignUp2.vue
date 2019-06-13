@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+    import { fb } from '@/firebase.js'
 
 export default {
   name: "signUp2",
@@ -24,17 +24,14 @@ export default {
   },
   methods: {
     signUp2: function() {
-      firebase
+      fb
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
-          user => {
-            alert("Your account has been created!" + user);
-          },
-          err => {
-            alert("Oops. " + err.message);
-          }
-        );
+          alert("Your account has been created!"))
+        .catch(err => {
+          alert("Oops. " + err.message);
+        });
     }
   }
 };
