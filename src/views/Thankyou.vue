@@ -1,5 +1,6 @@
 <template>
   <div class="site-wrap">
+    <Header></Header>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -32,5 +33,13 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
+<script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+export default {
+  components: { Footer, Header }
+};
+</script>

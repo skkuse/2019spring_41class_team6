@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header></Header>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -108,12 +109,16 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 export default {
   name: "contact",
+  components: { Footer, Header },
   methods: {
     goToContactcomplete: function() {
       this.$router.push("contactcomplete");

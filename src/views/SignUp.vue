@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Header></Header>
+    <Uploading ref="uploading"></Uploading>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -82,14 +84,23 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import { auth } from "@/firebase";
+import { auth, db } from "@/firebase";
+import Uploading from "@/components/Uploading.vue";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default {
   name: "signup",
+  components: {
+    Footer,
+    Header,
+    Uploading
+  },
   data: function() {
     return {
       emailID: "",

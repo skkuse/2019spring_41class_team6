@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header></Header>
     <Uploading style="display: none"></Uploading>
     <div style="text-align: center">
       <form id="myForm" @submit.prevent="uploadData">
@@ -38,12 +39,15 @@
         <button type="submit">submit</button>
       </form>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import { db, storage } from "@/firebase";
 import Uploading from "@/components/Uploading.vue";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 let images = {
   thumbnail: [],
   mainImages: [],
@@ -93,6 +97,8 @@ function uploadImages(images) {
 export default {
   name: "register-product",
   components: {
+    Footer,
+    Header,
     Uploading
   },
   data: () => {

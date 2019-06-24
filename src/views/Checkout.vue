@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header></Header>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -518,12 +519,16 @@
         <!-- </form> -->
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 export default {
   name: "checkout",
+  components: { Footer, Header },
   methods: {
     goToThankyou: function() {
       this.$router.push("thankyou");

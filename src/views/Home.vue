@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header></Header>
     <div
       class="site-blocks-cover"
       style="background-image: url(images/hero_1.jpg);"
@@ -262,5 +263,13 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
+<script>
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+export default {
+  components: { Footer, Header }
+};
+</script>

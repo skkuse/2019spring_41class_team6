@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Header></Header>
+    <Uploading ref="uploading"></Uploading>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -70,15 +72,20 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import { auth } from "@/firebase";
+import Uploading from "../components/Uploading";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default {
   name: "signin",
-  date: function() {
+  components: { Footer, Header, Uploading },
+  data() {
     return {
       emailID: "",
       password: ""
