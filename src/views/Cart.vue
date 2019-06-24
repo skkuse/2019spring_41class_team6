@@ -30,22 +30,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr v-for="(item, index) in items" :key="index">
                     <td class="product-thumbnail">
                       <img
-                        src="images/cloth_1.jpg"
+                        :src="item.data.thumbnail"
                         alt="Image"
                         class="img-fluid"
                       />
                     </td>
                     <td class="product-name">
-                      <h2 class="h5 text-black">Top Up T-Shirt</h2>
+                      <h2 class="h5 text-black">{{ item.data.title }}</h2>
                     </td>
-                    <td>$49.00</td>
+                    <td>₩ {{ item.data.price.toLocaleString() }}</td>
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
                         <div class="input-group-prepend">
                           <button
+                            @click="
+                              if (item.quantity > 1) {
+                                item.quantity--;
+                              }
+                            "
                             class="btn btn-outline-primary js-btn-minus"
                             type="button"
                           >
@@ -55,13 +60,14 @@
                         <input
                           type="text"
                           class="form-control text-center"
-                          value="1"
+                          :value="item.quantity"
                           placeholder=""
                           aria-label="Example text with button addon"
                           aria-describedby="button-addon1"
                         />
                         <div class="input-group-append">
                           <button
+                            @click="item.quantity++"
                             class="btn btn-outline-primary js-btn-plus"
                             type="button"
                           >
@@ -70,52 +76,17 @@
                         </div>
                       </div>
                     </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img
-                        src="images/cloth_2.jpg"
-                        alt="Image"
-                        class="img-fluid"
-                      />
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Polo Shirt</h2>
-                    </td>
-                    <td>$49.00</td>
                     <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button
-                            class="btn btn-outline-primary js-btn-minus"
-                            type="button"
-                          >
-                            &minus;
-                          </button>
-                        </div>
-                        <input
-                          type="text"
-                          class="form-control text-center"
-                          value="1"
-                          placeholder=""
-                          aria-label="Example text with button addon"
-                          aria-describedby="button-addon1"
-                        />
-                        <div class="input-group-append">
-                          <button
-                            class="btn btn-outline-primary js-btn-plus"
-                            type="button"
-                          >
-                            &#x2b;
-                          </button>
-                        </div>
-                      </div>
+                      ₩ {{ (item.data.price * item.quantity).toLocaleString() }}
                     </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
+                    <td>
+                      <button
+                        @click.prevent="removeItem(item.id, index)"
+                        class="btn btn-primary btn-sm"
+                      >
+                        X
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -125,18 +96,6 @@
 
         <div class="row">
           <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block">
-                  Update Cart
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">
-                  Continue Shopping
-                </button>
-              </div>
-            </div>
             <div class="row">
               <div class="col-md-12">
                 <label class="text-black h4" for="coupon">Coupon</label>
@@ -163,20 +122,14 @@
                     <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
                   </div>
                 </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
                 <div class="row mb-5">
                   <div class="col-md-6">
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black"
+                      >₩ {{ totalPrice.toLocaleString() }}</strong
+                    >
                   </div>
                 </div>
 
@@ -211,14 +164,67 @@ export default {
   data() {
     return {
       items: [],
-      cnt: [],
+      // totalPrice: 0,
       headerKey: 0
     };
+  },
+  computed: {
+    totalPrice: function() {
+      let total = 0;
+      for (let i in this.items) {
+        total += this.items[i].data.price * this.items[i].quantity;
+      }
+      return total;
+    }
   },
   methods: {
     goToChekout: function() {
       this.$router.push("checkout");
+    },
+    removeItem: function(productId, index) {
+      db.collection("users")
+        .doc(auth.currentUser.uid)
+        .update({
+          cart_items: fb.firestore.FieldValue.arrayRemove(productId)
+        })
+        .then(() => {
+          this.items.splice(index, 1);
+          this.headerKey++;
+        })
+        .catch(err => {
+          alert(err.message);
+        });
     }
+  },
+  beforeCreate() {
+    auth.onAuthStateChanged(usr => {
+      if (usr) {
+        db.collection("users")
+          .doc(usr.uid)
+          .get()
+          .then(snapshot => {
+            const cartItems = snapshot.data().cart_items;
+            for (let i in cartItems) {
+              db.collection("products")
+                .doc(cartItems[i])
+                .get()
+                .then(snapshot => {
+                  this.items.push({
+                    id: cartItems[i],
+                    data: snapshot.data(),
+                    quantity: 1
+                  });
+                })
+                .catch(err => {
+                  alert(err.message);
+                });
+            }
+          })
+          .catch(err => {
+            alert(err.message);
+          });
+      }
+    });
   }
 };
 </script>

@@ -30,40 +30,15 @@
               {{ product.main_description }}
             </p>
             <p>
-              <strong class="text-primary h4">${{ product.price }}</strong>
+              <strong class="text-primary h4">₩{{ product.price.toLocaleString() }}</strong>
             </p>
-            <div class="mb-5">
-              <div class="input-group mb-3" style="max-width: 120px;">
-                <div class="input-group-prepend">
-                  <button
-                    class="btn btn-outline-primary js-btn-minus"
-                    type="button"
-                  >
-                    &minus;
-                  </button>
-                </div>
-                <input
-                  type="text"
-                  class="form-control text-center"
-                  value="1"
-                  placeholder=""
-                  aria-label="Example text with button addon"
-                  aria-describedby="button-addon1"
-                />
-                <div class="input-group-append">
-                  <button
-                    class="btn btn-outline-primary js-btn-plus"
-                    type="button"
-                  >
-                    &#x2b;
-                  </button>
-                </div>
-              </div>
-            </div>
             <p>
-              <router-link to="/cart" class="buy-now btn btn-sm btn-primary"
-                >Add To Cart</router-link
+              <button
+                @click.prevent="addToCart"
+                class="buy-now btn btn-sm btn-primary"
               >
+                Add To Cart
+              </button>
             </p>
           </div>
         </div>
@@ -189,6 +164,21 @@ export default {
       .then(doc => {
         this.product = doc.data();
       });
+  },
+  methods: {
+    addToCart: function() {
+      db.collection("users")
+        .doc(auth.currentUser.uid)
+        .update({
+          cart_items: fb.firestore.FieldValue.arrayUnion(this.$route.params.id)
+        })
+        .then(() => {
+          this.$router.push("/cart");
+        })
+        .catch(err => {
+          alert(err.message);
+        });
+    }
   }
 };
 </script>
