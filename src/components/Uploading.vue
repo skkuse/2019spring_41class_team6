@@ -1,5 +1,5 @@
 <template>
-  <div id="uploading">
+  <div id="uploading" style="display: none">
     {{ msg }}
   </div>
 </template>
@@ -8,6 +8,14 @@
 export default {
   props: {
     msg: String
+  },
+  methods: {
+    toggleProgress: function() {
+      document.getElementById("uploading").style.display =
+        document.getElementById("uploading").style.display === "none"
+          ? "block"
+          : "none";
+    }
   }
 };
 </script>

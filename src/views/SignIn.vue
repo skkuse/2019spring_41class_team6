@@ -86,10 +86,11 @@ export default {
   },
   methods: {
     signIn: function() {
+      this.$refs.uploading.toggleProgress();
       auth
         .signInWithEmailAndPassword(this.emailID, this.password)
         .then(() => {
-          console.log(this.emailID + "  " + this.password);
+          this.$refs.uploading.toggleProgress();
           alert("You are successfully connected");
           location.reload();
         })

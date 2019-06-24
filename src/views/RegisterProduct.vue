@@ -56,13 +56,6 @@ let urls = {
   detailImages: []
 };
 
-function toggleProgress() {
-  document.getElementById("uploading").style.display =
-    document.getElementById("uploading").style.display === "none"
-      ? "block"
-      : "none";
-}
-
 function uploadImages(images) {
   return new Promise((resolve, reject) => {
     let cnt = 0;
@@ -113,7 +106,7 @@ export default {
   },
   methods: {
     uploadData: function() {
-      toggleProgress();
+      this.$refs.uploading.toggleProgress();
       uploadImages(images)
         .then(() => {
           db.collection("products")
@@ -128,7 +121,7 @@ export default {
               price: this.price
             })
             .then(() => {
-              toggleProgress();
+              this.$refs.uploading.toggleProgress();
               alert("업로드 완료");
               location.reload();
             })
