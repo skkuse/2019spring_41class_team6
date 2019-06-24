@@ -28,13 +28,15 @@
 
           <div class="col-6 col-md-4 order-3 order-md-3 text-right">
             <div class="site-top-icons">
-              <ul>
+              <ul v-if="isSigned">
                 <li>
                   <router-link to="/signin">Sign In</router-link>
                 </li>
                 <li>
                   <router-link to="/signup">Sign Up</router-link>
                 </li>
+              </ul>
+              <ul v-else>
                 <li>
                   <a href="#"><span class="icon icon-person"></span></a>
                 </li>
@@ -77,4 +79,14 @@
   </header>
 </template>
 
-<script></script>
+<script>
+import { auth } from "@/firebase";
+export default {
+  name: "Header",
+  data() {
+    return {
+      isSigned: !!auth.currentUser
+    };
+  }
+};
+</script>
