@@ -60,9 +60,8 @@
                 <div class="form-group row">
                   <div class="col-lg-12">
                     <span
-                      >If you don't have account, <a href="SignUp.vue"
-                        >Sign Up!</a
-                      ></span
+                      >If you don't have account,
+                      <a href="SignUp.vue">Sign Up!</a></span
                     >
                   </div>
                 </div>
@@ -99,7 +98,7 @@ export default {
         .then(() => {
           this.$refs.uploading.toggleProgress();
           alert("You are successfully connected");
-          location.reload();
+          this.$router.push("/");
         })
         .catch(err => {
           alert("error: " + err.message);

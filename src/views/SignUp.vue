@@ -57,6 +57,7 @@
                     >
                     <input
                       type="text"
+                      v-model="nickname"
                       class="form-control"
                       id="c_email"
                       name="c_email"
@@ -104,19 +105,34 @@ export default {
   data: function() {
     return {
       emailID: "",
-      password: ""
+      password: "",
+      nickname: ""
     };
   },
   methods: {
     signUp: function() {
+      this.$refs.uploading.toggleProgress();
       auth
         .createUserWithEmailAndPassword(this.emailID, this.password)
-        .then(() => {
-          console.log(this.emailID + "  " + this.password);
-          alert("Your account has been created!");
+        .then(callback => {
+          Uploading.flag = true;
+          db.collection("users")
+            .doc(callback.user.uid)
+            .set({
+              createdAt: +new Date(),
+              nickname: this.nickname,
+              cart_items: []
+            })
+            .then(() => {
+              this.$refs.uploading.toggleProgress();
+              alert("Your account has been created!");
+            })
+            .catch(err => {
+              alert(err.message);
+            });
         })
         .catch(err => {
-          alert("Error: " + err.message);
+          alert(err.message);
         });
     }
   }
