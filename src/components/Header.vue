@@ -21,14 +21,15 @@
           >
             <div class="site-logo">
               <router-link to="/" class="js-logo-clone"
-                >Indi Market</router-link
-              >
+                >Indi Market
+              </router-link>
             </div>
           </div>
 
           <div class="col-6 col-md-4 order-3 order-md-3 text-right">
             <div class="site-top-icons">
-              <ul v-if="isSigned">
+              <ul v-if="isSigned === null"></ul>
+              <ul v-else-if="!isSigned">
                 <li>
                   <router-link to="/signin">Sign In</router-link>
                 </li>
@@ -38,7 +39,9 @@
               </ul>
               <ul v-else>
                 <li>
-                  <a href="#"><span class="icon icon-person"></span></a>
+                  <a @click.prevent="logOut"
+                    ><span class="icon icon-person"></span
+                  ></a>
                 </li>
                 <li>
                   <a href="#"><span class="icon icon-heart-o"></span></a>
@@ -46,7 +49,9 @@
                 <li>
                   <router-link to="/cart" class="site-cart">
                     <span class="icon icon-shopping_cart"></span>
-                    <span class="count">2</span>
+                    <span v-if="cartQuantity" class="count">{{
+                      cartQuantity
+                    }}</span>
                   </router-link>
                 </li>
                 <li class="d-inline-block d-md-none ml-md-0">
@@ -80,13 +85,40 @@
 </template>
 
 <script>
-import { auth } from "@/firebase";
+import { db, auth } from "@/firebase";
 export default {
   name: "Header",
   data() {
     return {
-      isSigned: !!auth.currentUser
+      isSigned: null,
+      cartQuantity: null
     };
+  },
+  methods: {
+    logOut: function() {
+      auth
+        .signOut()
+        .then(() => {
+          alert("sign out!");
+          this.$router.push("/");
+        })
+        .catch(err => {
+          alert(err.message);
+        });
+    }
+  },
+  beforeCreate() {
+    auth.onAuthStateChanged(usr => {
+      this.isSigned = !!usr;
+      if (usr) {
+        db.collection("users")
+          .doc(usr.uid)
+          .get()
+          .then(snapshot => {
+            this.cartQuantity = snapshot.data().cart_items.length;
+          });
+      }
+    });
   }
 };
 </script>
