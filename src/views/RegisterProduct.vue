@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header></Header>
-    <Uploading style="display: none"></Uploading>
+    <Uploading ref="uploading"></Uploading>
     <div style="text-align: center">
       <form id="myForm" @submit.prevent="uploadData">
         <input
@@ -124,7 +124,7 @@ export default {
               main_description: this.mainDescription,
               main_images: urls.mainImages,
               detail_images: urls.detailImages,
-              price: this.price
+              price: Number(this.price)
             })
             .then(() => {
               this.$refs.uploading.toggleProgress();
