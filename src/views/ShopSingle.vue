@@ -19,7 +19,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img :src="product.main_images[0]" alt="Image" class="img-fluid" />
+            <img
+              :src="product.main_images"
+              alt="Image"
+              class="img-fluid"
+            />
           </div>
           <div class="col-md-6">
             <h2 class="text-black">{{ product.title }}</h2>
@@ -30,7 +34,9 @@
               {{ product.main_description }}
             </p>
             <p>
-              <strong class="text-primary h4">₩{{ product.price.toLocaleString() }}</strong>
+              <strong class="text-primary h4"
+                >₩ {{ product.price.toLocaleString() }}</strong
+              >
             </p>
             <p>
               <button
@@ -70,17 +76,25 @@ export default {
   },
   methods: {
     addToCart: function() {
-      db.collection("users")
-        .doc(auth.currentUser.uid)
-        .update({
-          cart_items: fb.firestore.FieldValue.arrayUnion(this.$route.params.id)
-        })
-        .then(() => {
-          this.$router.push("/cart");
-        })
-        .catch(err => {
-          alert(err.message);
-        });
+      auth.onAuthStateChanged(usr => {
+        if (usr) {
+          db.collection("users")
+            .doc(usr.uid)
+            .update({
+              cart_items: fb.firestore.FieldValue.arrayUnion(
+                this.$route.params.id
+              )
+            })
+            .then(() => {
+              this.$router.push("/cart");
+            })
+            .catch(err => {
+              alert(err.message);
+            });
+        } else {
+          this.$router.push("/signin");
+        }
+      });
     }
   }
 };
