@@ -44,7 +44,7 @@
                   ></a>
                 </li>
                 <li>
-                  <a href="#"><span class="icon icon-heart-o"></span></a>
+                  <router-link to="/register-product"><span class="icon icon-heart-o"></span></router-link>
                 </li>
                 <li>
                   <router-link to="/cart" class="site-cart">
